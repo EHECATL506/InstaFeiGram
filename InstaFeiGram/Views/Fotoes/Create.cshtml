@@ -1,0 +1,78 @@
+﻿@model InstaFeiGram.Models.Foto
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <title>Subir Foto</title>
+
+</head>
+<body>
+    <h2>Elige una imagen a subir a la plataforma</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="row">
+                <img src="" id="img_imagen" alt="..." class="img-responsive img-thumbnail">
+            </div>
+
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input id="in_imagen" type="file" name="imagen" accept="image/png, image/jpeg, image/jpg"/>
+                </div>
+                <div class="form-group">
+                    <label asp-for="titulo" class="control-label"></label>
+                    <input asp-for="titulo" class="form-control" />
+                    <span asp-validation-for="titulo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="resumen" class="control-label"></label>
+                    <input asp-for="resumen" class="form-control" />
+                    <span asp-validation-for="resumen" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="tag" class="control-label"></label>
+                    <input asp-for="tag" class="form-control" />
+                    <span asp-validation-for="tag" class="text-danger"></span>
+                </div>
+
+                <input name="grises" value="false" id="grises" hidden/>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" onClick="TestFileType(this.form.imagen.value, ['png', 'jpg']);" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h4>Seleccionador para filtros</h4>
+                <div class="row">
+                    <label class="label-success" type="submit">Filtros</label>
+                    <div class="form-horizontal">
+                        <button class="btn-default" id="btn_grises">Gris</button>
+                        <br />
+                        <button class="btn-default" onclick="document.getElementById('img_imagen').blur()">Pixeles</button>
+                        <br />
+                        <button class="btn-default" onclick="Escalar();">Escalar</button>
+                        <br />
+                        <button class="btn-default" onclick="Recortar();">Recortar</button>
+                        <br />
+                    </div>
+
+                </div>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Regresar a la galeria principal</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    <script type="text/javascript" src="~/js/site.js"></script>
+</body>
+</html>

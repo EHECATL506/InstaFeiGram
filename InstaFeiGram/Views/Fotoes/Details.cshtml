@@ -1,0 +1,81 @@
+﻿@model InstaFeiGram.Models.Foto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalles y especificaciones de la imagen</h2>
+
+<div>
+    <h4>Foto</h4>
+    <div class="col-4"></div>
+    <div class="col-4">
+        @if (Model.grises == true)
+        {
+            <div class="col-4" style="-webkit-filter:invert(100%);filter: invert(100%)">
+                <img src="\images\@Model.rutaimagen" alt="model.resumen" class="img-responsive">
+            </div>
+        }
+        else
+        {
+            <div class="col-4">
+                <img src="\images\@Model.rutaimagen" alt="model.resumen" class="img-responsive">
+            </div>
+        }
+
+        <p><a href="/Fotoes/Perfiles?FotoId=@Model.correousuario" class="btn btn-sm btn-primary" role="button">Subida por: @Model.correousuario</a></p>
+
+        <hr />
+        <div class="row">
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.titulo)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.titulo)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.resumen)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.resumen)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tag)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.tag)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.fechasubida)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.fechasubida)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.numvisitas)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.numvisitas)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.correousuario)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.correousuario)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.gusta)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.gusta)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Index">ATRÁS</a>
+        </div>
+    </div>
+    <div class="col-4"></div>
+</div>

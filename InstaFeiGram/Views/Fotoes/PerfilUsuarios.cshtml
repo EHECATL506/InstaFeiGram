@@ -1,0 +1,45 @@
+﻿@model IEnumerable<InstaFeiGram.Models.Foto>
+
+@{
+    ViewData["Title"] = "PerfilUsuarios";
+}
+
+
+<h2>Mi galeria personal:@User.Identity.Name</h2>
+<br />
+<h4> Galeria de de fotos iniciada desde:@DateTime.Today</h4>
+<button class="success" id="alertsubir">Seguir a este usuario</button>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            @if (item.grises == true)
+            {
+                <div class="col-4" style="-webkit-filter:invert(100%);filter: invert(100%)">
+                    <img src="\images\@item.rutaimagen" alt="model.resumen" class="img-responsive">
+                </div>
+            }
+            else
+            {
+                <div class="col-4">
+                    <img src="\images\@item.rutaimagen" alt="model.resumen" class="img-responsive">
+                </div>
+            }
+            <div class="caption">
+                <br />
+                <h3>@item.titulo</h3>
+                <p><a href="/Comentarios/Create?FotoId=@item.idfoto" class="btn btn-sm btn-primary" role="button">Comentarios</a></p>
+                | <a class="btn" href="/Fotoes/DarGusta?idFoto=@item.idfoto" onclick="blcbtn(this)">Me gusta</a>|
+                <a asp-action="Edit" asp-route-id="@item.idfoto">Editar</a>|
+                <a asp-action="Details" asp-route-id="@item.idfoto">Detalles</a>|
+                <a asp-action="Delete" asp-route-id="@item.idfoto">Borrar</a>|
+                <br />
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+}
+
+<script type="text/javascript" src="~/js/site.js"></script>

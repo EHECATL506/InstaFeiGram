@@ -1,0 +1,50 @@
+﻿@model InstaFeiGram.Models.Comentario
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Publicar Comentarios</h2>
+<h4>Opiniones de los usuarios</h4>
+<hr />
+<div class="row">
+    <div class="col-4"></div>
+    <h3>Titulo - @ViewBag.FotoTitulo </h3>
+    <div class="col-4">
+        <a href="/Fotoes/Perfiles?usuario=@ViewBag.Fotousuario">Subida por: @ViewBag.Fotousuario</a>
+        <br />
+        <label>En la fecha de:@ViewBag.FotoFecha</label>
+        <img src="\images\@ViewBag.Fotoruta" class="img-responsive">
+        <label>@ViewBag.Fotoresumen</label> <a class="btn" href="/Fotoes/DarGusta?idFoto=@ViewBag.FotoId">Me gusta</a>
+
+        <h3>Lista de Comentarios</h3>
+        @foreach (var item in ViewBag.ListaDeComentarios)
+        {
+            <div class="row col-4">
+                <label class="label-info">Usuario:</label><label>@item.correousuario</label>
+                <br />
+                <label class="label-success">Comento:</label><label>@item.texto</label>
+            </div>
+        }
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input name="FotoId" value="@ViewBag.FotoId" hidden />
+            <div class="form-group">
+                <label asp-for="texto" class="control-label"></label>
+                <input asp-for="texto" id="txtcomentario" placeholder="Ingresa tu comentario sobre la foto aqui" class="form-control"/>
+                <span asp-validation-for="texto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Publicar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+    <div class="col-4"></div>
+</div>
+            
+
+    
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

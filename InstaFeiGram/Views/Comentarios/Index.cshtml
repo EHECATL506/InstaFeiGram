@@ -1,0 +1,41 @@
+﻿@model IEnumerable<InstaFeiGram.Models.Comentario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Crear otro comentario</a>
+</p>
+    <table class="table-responsive">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.texto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.correousuario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.texto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correousuario)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.idcomentario">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.idcomentario">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.idcomentario">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

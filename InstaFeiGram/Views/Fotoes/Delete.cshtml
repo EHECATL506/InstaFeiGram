@@ -1,0 +1,69 @@
+﻿@model InstaFeiGram.Models.Foto
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Foto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.rutaimagen)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.rutaimagen)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.titulo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.resumen)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.resumen)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tag)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fechasubida)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fechasubida)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.numvisitas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.numvisitas)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.correousuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.correousuario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.gusta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.gusta)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="idfoto" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

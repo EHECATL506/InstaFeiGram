@@ -1,0 +1,54 @@
+﻿@model IEnumerable<InstaFeiGram.Models.Foto>
+
+@{
+    ViewData["Title"] = "Buscar Imagenes";
+}
+
+<h2>BuscarImagenes</h2>
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <form asp-controller="Fotoes" asp-action="Buscar" method="get">
+            <p>
+                Buscar: <input type="text" name="BuscarTodo">
+                <input type="submit" value="Buscar" />
+                <br />
+               <br />
+            </p>
+        </form>
+    </div>
+    <div class="col-4"></div>
+</div>
+
+
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            @if (item.grises == true)
+            {
+                <div class="col-4" style="-webkit-filter:invert(100%);filter: invert(100%)">
+                    <img src="\images\@item.rutaimagen" alt="model.resumen" class="img-responsive">
+                </div>
+            }
+            else
+            {
+                <div class="col-4">
+                    <img src="\images\@item.rutaimagen" alt="model.resumen" class="img-responsive">
+                </div>
+            }
+
+            
+
+            <div class="caption">
+                <h3>@item.titulo</h3>
+                <p><a href="/Comentarios/Create?FotoId=@item.idfoto" class="btn btn-sm btn-primary" role="button">Comentarios</a></p>
+                |<a class="btn" href="/Fotoes/DarGusta?idFoto=@item.idfoto">Me gusta</a>|
+                <a asp-action="Details" asp-route-id="@item.idfoto">Detalles</a>|
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+}
